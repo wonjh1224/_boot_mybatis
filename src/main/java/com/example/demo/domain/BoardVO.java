@@ -17,5 +17,5 @@ public class BoardVO {
 	private String content;
 	private String regAt;
 	private String modAt;
-	
+
 }
