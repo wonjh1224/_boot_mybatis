@@ -1,46 +1,23 @@
 package com.example.demo.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
-
-@AllArgsConstructor
-@NoArgsConstructor
-public class BoardVO {
-
+public class CommentVO {
+	private long cno;
 	private long bno;
-	private String title;
 	private String writer;
 	private String content;
 	private String regAt;
 	private String modAt;
-		
-	public BoardVO() {
-		
+	public long getCno() {
+		return cno;
 	}
-	public BoardVO(long bno, String title, String writer, String content, String regAt, String modAt) {
-	
-		this.bno = bno;
-		this.title = title;
-		this.writer = writer;
-		this.content = content;
-		this.regAt = regAt;
-		this.modAt = modAt;
+	public void setCno(long cno) {
+		this.cno = cno;
 	}
-	
 	public long getBno() {
 		return bno;
 	}
 	public void setBno(long bno) {
 		this.bno = bno;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public String getWriter() {
 		return writer;
@@ -66,12 +43,23 @@ public class BoardVO {
 	public void setModAt(String modAt) {
 		this.modAt = modAt;
 	}
+	public CommentVO(long cno, long bno, String writer, String content, String regAt, String modAt) {
+
+		this.cno = cno;
+		this.bno = bno;
+		this.writer = writer;
+		this.content = content;
+		this.regAt = regAt;
+		this.modAt = modAt;
+	}
+	public CommentVO() {
+	
+	}
 	@Override
 	public String toString() {
-		return "BoardVO [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", regAt="
+		return "CommentVO [cno=" + cno + ", bno=" + bno + ", writer=" + writer + ", content=" + content + ", regAt="
 				+ regAt + ", modAt=" + modAt + "]";
 	}
-
 	
 	
 }
