@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thyemleaf.org">
+<html xmlns:th="http://www.thyemleaf.org/" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
 
 <th:block th:fragment="setFragment(content)">
 <head>
@@ -32,12 +33,25 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="/board/list">게시판보기</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">로그인</a>
+        <li class="nav-item" sec:authorize="isAnonymous()">
+          <a class="nav-link active" aria-current="page" href="/member/register">회원가입</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">회원가입</a>
+        <li class="nav-item" sec:authorize="isAnonymous()">
+          <a class="nav-link active" aria-current="page" href="/member/login">로그인</a>
         </li>
+        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+          <a class="nav-link active" aria-current="page" href="/member/list">멤버 리스트</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <a class="nav-link active" aria-current="page" href="#">로그아웃</a>
+        </li>
+        <li class="nav-item" sec:authorize="isAuthenticated()">
+          <!-- <a class="nav-link active" aria-current="page" th:href="|/member/modify|" th:text="${#authentication.name}"></a> -->
+          <a class="nav-link active" aria-current="page" th:href="|/member/modify|" 
+          th:with="auth=${#authentication.getPrincipal()}"
+          th:text="${auth.mvo.nickName}"></a>
+        </li>
+
       
    
       </ul>
